@@ -12,7 +12,7 @@
           <br>
           AC: {{creature.ac}}
           <br>
-          Init:  {{creature.number}}
+          Init:  {{creature.initiatve}}
           <br>
           <a class="button" @click="removeCharacter(index)">Remove</a>
       </div>
@@ -62,7 +62,7 @@ export default {
       this.creatures.push(data);
 
       this.creatures = this.creatures.sort(
-        (a, b) => parseInt(a.number) < parseInt(b.number)
+        (a, b) => parseInt(a.initiatve) < parseInt(b.initiatve)
       );
     });
   }
@@ -82,7 +82,7 @@ export default {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  border-radius: 5%;
+  border-radius: 5px;
 }
 
 .round {

@@ -35,10 +35,14 @@ export default {};
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  border-radius: 5%;
+  border-radius: 5px;
 }
 
 .button:hover {
   background-color: #373276;
+}
+
+input.num{
+  width: 2.5em
 }
 </style>

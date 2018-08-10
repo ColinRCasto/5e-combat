@@ -8,29 +8,10 @@
     <br>
     AC: <input type="number" v-model="ac" />
     <br>
-    Initiative: <input type="number" v-model="number" /><br>
+    Initiative: <input type="number" v-model="initiatve" /><br>
     <a class="button" @click="addCreature()">Add to Initiative</a>
     <hr>
   </div>
-<!--
-  <h2>Initiative Order <a class="button round" v-if="creatures.length > 2" @click="cycle()">></a></h2>
-  
-    <ul v-for="(creature,index) in creatures">
-      <init-card :style="determineStyle(index)">
-      <p>
-          <h3>{{creature.name}}</h3>
-          <br>
-          Hp: <input size="1em" type="text" v-model="creatures[index].hp" />
-          <br>
-          AC: {{creature.ac}}
-          <br>
-          Init:  {{creature.number}}
-          <br>
-          <a class="button" @click="removeCharacter(index)">Remove</a>
-      </p>
-      </init-card>
-    </ul>
--->
 </div>
 </template>
 
@@ -46,7 +27,7 @@ export default {
       name: "",
       hp: 20,
       ac: 12,
-      number: 10,
+      initiatve: 10,
       creatures: []
     };
   },
@@ -60,51 +41,14 @@ export default {
         name: this.name,
         hp: this.hp,
         ac: this.ac,
-        number: this.number
+        initiatve: this.initiatve
       };
 
       eventBus.$emit("creatureAdded", newCreature);
 
       this.name = "";
       this.index++;
-      this.number = 10;
-      /*
-      this.creatures.push({
-        name: this.name,
-        hp : this.hp,
-        ac: this.ac,
-        number: this.number,
-      });
-      
-
-      this.creatures = this.creatures.sort(
-        (a, b) => parseInt(a.number) < parseInt(b.number)
-      );
-
-      this.name = "";
-      this.index++;
-      this.number = 10;
-      */
-    },
-
-    cycle() {
-      var outlier = this.creatures.shift();
-      this.creatures.push(outlier);
-    },
-
-    determineStyle(i) {
-      if (i == 0) {
-        return {
-          "background-color": "#4E2C73"
-        };
-      } else {
-        return {
-          "background-color": "#2B4C6F"
-        };
-      }
-    },
-    removeCharacter(index) {
-      this.creatures.splice(index, 1);
+      this.initiatve = 10;
     },
     detectkeys(event) {
       if (event.key == "Enter") {
@@ -141,11 +85,16 @@ export default {
 }
 
 .button:hover {
+
 }
 .button:active {
   position: relative;
   background-color: #373276;
   border-color: #1d1958 #585494 #585494 #1d1958;
   top: 2px;
+}
+
+h2 {
+  cursor: pointer;
 }
 </style>
