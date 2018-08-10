@@ -5,11 +5,9 @@
       <div class="buttons_bar">
         <div class="button sideby" @click="loadParty">Load Party</div>
         <div class="button sideby" @click="addPartyToInitiative">Add To Initiative</div>
-        <div class="button sideby">Save Party</div>
       </div>
       <div class="party-display">
-      
-        <init-card v-for="(player,index) in party" >
+        <init-card v-for="(player,index) in party" :key="index">
           <div class="card">
             <h3>{{player.name}}</h3>
             <br>
@@ -20,7 +18,7 @@
             Init: <input class="num" type="number" v-model="player.initiatve" />
             <br>
             <br>
-            </div>
+          </div>
         </init-card>
     
 
@@ -112,7 +110,9 @@ h2 {
 .party-display{
   margin: auto;
   width: 90vw;
-  display: grid;
-  grid-template: repeat(5,20%) / repeat(5,20%)
+ // display: grid;
+  //grid-template: repeat(3,33%) / repeat(3,33%)
 }
+
+
 </style>

@@ -15,6 +15,7 @@ export default {};
   width: 200px;
   margin: 5px;
   float: left;
+  grid-area: auto;
   border-radius: 5%;
   color: white;
   background-color: #2b4c6f;

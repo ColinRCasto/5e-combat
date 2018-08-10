@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <save-character />
+    <!--<save-character /> -->
     <edit-party />
     <add-creatures />
     <init-order />

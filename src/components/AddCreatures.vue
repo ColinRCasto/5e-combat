@@ -23,7 +23,7 @@ export default {
   name: "init-container",
   data() {
     return {
-      addBox: true,
+      addBox: false,
       name: "",
       hp: 20,
       ac: 12,
