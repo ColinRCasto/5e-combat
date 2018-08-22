@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="card">
   <slot />
 </div>
 </template>
@@ -19,6 +19,7 @@ export default {};
   border-radius: 5%;
   color: white;
   background-color: #2b4c6f;
+  text-align:center;
 }
 
 .current {

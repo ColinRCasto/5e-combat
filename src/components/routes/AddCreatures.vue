@@ -1,54 +1,47 @@
 <template>
 <div>
-  <h2 @click="addBox = !addBox" style="{'user-select':'none'}">Add Creatures {{addBox ? '-' : '+'}}</h2>
-  <div v-if="addBox" @keyup="detectkeys">
+  <h1>Add Creatures</h1>
+  <div @keyup="detectkeys">
     Name: <input type="text" v-model="name" />
     <br>
     Hit Points: <input type="number" v-model="hp" />
     <br>
     AC: <input type="number" v-model="ac" />
     <br>
-    Initiative: <input type="number" v-model="initiatve" /><br>
-    <a class="button" @click="addCreature()">Add to Initiative</a>
+    Initiative: <input type="number" v-model="initiative" /><br>
+    <a class="button" @click="insertCreature">Add to Initiative</a>
     <hr>
   </div>
 </div>
 </template>
 
 <script>
-import InitiativeCard from "./InitiativeCard";
-import { eventBus } from "../main.js";
+import InitiativeCard from "../InitiativeCard";
+import {mapActions} from 'vuex';
 
 export default {
   name: "init-container",
   data() {
     return {
-      addBox: false,
       name: "",
       hp: 20,
       ac: 12,
-      initiatve: 10,
-      creatures: []
+      initiative: 10,
     };
   },
   methods: {
-    addCreature() {
-      if (this.name == "") {
-        alert("Please enter a character name");
-        return;
-      }
-      var newCreature = {
+    ...mapActions([
+      'addCreature'
+    ]),
+    insertCreature(){
+      let new_creature = {
         name: this.name,
         hp: this.hp,
-        ac: this.ac,
-        initiatve: this.initiatve
-      };
-
-      eventBus.$emit("creatureAdded", newCreature);
-
-      this.name = "";
-      this.index++;
-      this.initiatve = 10;
+        ac: this.hp,
+        initiative: this.initiative
+      }
+      this.addCreature(new_creature);
+      console.log(this.$store.getters.get_creatures);
     },
     detectkeys(event) {
       if (event.key == "Enter") {
@@ -96,5 +89,13 @@ export default {
 
 h2 {
   cursor: pointer;
+}
+
+input{
+  border-radius: 5px;
+  border-color: black;
+  border-width: 1px;
+  margin: 2px;
+  padding: 2px;
 }
 </style>

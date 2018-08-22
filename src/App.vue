@@ -1,24 +1,19 @@
 <template>
-  <div id="app">
-    <!--<save-character /> -->
-    <edit-party />
-    <add-creatures />
-    <init-order />
+  <div class="app">
+    <nav-bar />
+    <transition name="view" appear>
+      <router-view />
+    </transition>
   </div>
 </template>
 
 <script>
-import AddCreatures from "./components/AddCreatures";
-import InitiativeOrder from "./components/InitiativeOrder";
-import SaveCharacter from "./components/SaveCharacter";
-import EditParty from "./components/EditParty"
+import NavBar from './components/NavBar';
+
 export default {
   name: "App",
   components: {
-    "add-creatures": AddCreatures,
-    "init-order": InitiativeOrder,
-    "save-character": SaveCharacter,
-    "edit-party": EditParty,
+    'nav-bar': NavBar,
   }
 };
 </script>
@@ -28,12 +23,40 @@ export default {
   margin-top: auto;
 }
 
-#app {
+.app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
+}
+
+.view-enter-active{
+  animation: slide-in 0.3s ease-in forwards;
+}
+
+.view-leave-active{
+  animation: slide-out 0.3s ease-in forwards;
+  position: absolute;
+}
+
+@keyframes slide-in{
+  0%{
+    transform: translateX(500px);
+    opacity: 0;
+  }
+  100%{
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out{
+  0%{
+    transform: translateX(0px);
+    opacity:1;
+  }
+  100%{
+    transform: translateX(-500px);
+    opacity: 0;
+  }
 }
 </style>

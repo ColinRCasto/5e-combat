@@ -1,20 +1,20 @@
 <template>
 <div class="init-order">
-  <h2>Initiative Order <a class="button round" v-if="creatures.length > 2" @click="cycle()">></a></h2>
+  <h2>Initiative Order <a class="button round" @click="cycle()">></a></h2>
   
-    <ul v-for="(creature,index) in creatures">
+    <ul v-for="(creature,index) in get_creatures" :key="index">
     <transition name="card" appear>
-      <init-card :style="determineStyle(index)">
-      <div :class="determineStyle(index)">
+      <init-card>
+      <div>
           <h3>{{creature.name}}</h3>
           <br>
-          Hp: <input size="1em" type="text" v-model="creatures[index].hp" />
+          Hp: <input size="1em" type="text" v-model="creature.hp" />
           <br>
           AC: {{creature.ac}}
           <br>
-          Init:  {{creature.initiatve}}
+          Init: {{creature.initiative}}
           <br>
-          <a class="button" @click="removeCharacter(index)">Remove</a>
+          <a class="button" @click="removeCreature(index)">Remove</a>
       </div>
       </init-card>
     </transition>
@@ -23,49 +23,27 @@
 </template>
 
 <script>
-import { eventBus } from "../main.js";
-import InitiativeCard from "./InitiativeCard";
+import InitiativeCard from "../InitiativeCard";
+import {mapGetters,mapActions} from 'vuex';
 
 export default {
   components: {
     "init-card": InitiativeCard
   },
-  data() {
-    return {
-      creatures: []
-    };
-  },
+  computed : mapGetters([
+      'get_creatures'
+    ]),
   methods: {
-    cycle() {
-      var outlier = this.creatures.shift();
-      this.creatures.push(outlier);
-    },
-
-    determineStyle(i) {
-      if (i == 0) {
-        return "card current";
-      } else {
-        return "card";
-      }
-    },
-    removeCharacter(index) {
-      this.creatures.splice(index, 1);
-    },
     detectkeys(event) {
-      if (event.key == "Enter") {
+      if (event.key === "Enter") {
         this.addCreature();
       }
-    }
+    },
+  ...mapActions([
+    'removeCreature',
+    'cycle'
+  ])
   },
-  created() {
-    eventBus.$on("creatureAdded", data => {
-      this.creatures.push(data);
-
-      this.creatures = this.creatures.sort(
-        (a, b) => parseInt(a.initiatve) < parseInt(b.initiatve)
-      );
-    });
-  }
 };
 </script>
 
