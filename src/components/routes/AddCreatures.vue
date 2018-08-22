@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1>Add Creatures</h1>
+  <h1 style="color:white">Add Creatures</h1>
   <div @keyup="detectkeys">
     Name: <input type="text" v-model="name" />
     <br>
@@ -10,7 +10,6 @@
     <br>
     Initiative: <input type="number" v-model="initiative" /><br>
     <a class="button" @click="insertCreature">Add to Initiative</a>
-    <hr>
   </div>
 </div>
 </template>

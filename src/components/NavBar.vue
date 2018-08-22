@@ -11,11 +11,7 @@ export default {};
 </script>
 
 <style scoped>
-  a{
-    background-color: lightblue;
-  }
-
-  a {
+a {
   background-color: #595494;
   border: none;
   color: white;
@@ -33,15 +29,15 @@ a:hover {
   background-color: #373276;
 }
 
-.router-link-active{
+.router-link-active {
   background-color: #373276;
 }
 
-.nav{
+.nav {
   background-color: #595494;
 }
 
-.nav-button{
-   //transform: translateY(-50px)
+.nav-button {
+  //transform: translateY(-50px)
 }
 </style>

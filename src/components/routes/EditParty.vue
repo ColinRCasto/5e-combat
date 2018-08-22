@@ -1,6 +1,6 @@
 <template>
   <div class="edit-party">
-    <h1>Edit Party</h1>
+    <h1 style="color:white">Edit Party</h1>
     <div class ="content-container">
       <div class="buttons_bar">
         <div class="button sideby" @click="loadParty">Load Party</div>

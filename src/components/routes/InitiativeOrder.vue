@@ -1,6 +1,6 @@
 <template>
 <div class="init-order">
-  <h2>Initiative Order <a class="button round" @click="cycle()">></a></h2>
+  <h1 style="color:white">Initiative Order <a class="button round" v-if="get_creatures.length > 2" @click="cycle()">></a></h1>
   
     <ul v-for="(creature,index) in get_creatures" :key="index">
     <transition name="card" appear>
@@ -51,7 +51,7 @@ export default {
 .button {
   background-color: #595494;
   border-style: solid;
-  border-color: #585494 #1d1958 #1d1958 #585494;
+  border-color: #1d1958;
   color: white;
   padding: 10px 20px;
   text-align: center;
